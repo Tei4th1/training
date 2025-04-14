@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import { ThemeProvider, useTheme } from "./context";
 import "./App.css";
-import { ButtonClick } from "./components/ButtonClick";
-import { ButtonBG } from "./components/ButtonBG";
-import { getRandomColor } from "./utils/randomColor";
+import ButtonColor from "./Button";
+import { Container } from "./components/Container";
+import { ThemeSwitch } from "./ThemeSwitch";
+import { ThemeProvider as StyledThemeProvider } from "styled-components";
+
+function ThemedApp() {
+  const { theme } = useTheme();
+
+  return (
+    <StyledThemeProvider theme={theme}>
+      <Container>
+        <ButtonColor />
+        <ThemeSwitch />
+      </Container>
+    </StyledThemeProvider>
+  );
+}
 
 function App() {
-  const [color, setColor] = useState<string>();
-  const handleClick = () => {
-    setColor(getRandomColor());
-  };
   return (
-    <ButtonBG>
-      <ButtonClick
-        bgcolor={color}
-        onClick={() => {
-          handleClick();
-        }}
-      >
-        Click Me
-      </ButtonClick>
-    </ButtonBG>
+    <ThemeProvider>
+      <ThemedApp />
+    </ThemeProvider>
   );
 }
 

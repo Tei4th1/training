@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { useTheme } from "../../context";
 
-export const ButtonBG = styled.div`
+export const ThemeBg = styled.div`
   width: 300px;
   height: 300px;
   border: 1px solid;
